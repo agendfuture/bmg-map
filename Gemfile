@@ -26,6 +26,7 @@ gem 'jbuilder'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'leaflet-rails'
+gem 'angular-rails-templates', '>= 1.0.0'
 
 gem "browserify-rails"
 

@@ -1,7 +1,7 @@
 
-<div id="map"></div>
+<div ng-controller="MapCtrl" id="map"></div>
 
-<div id="sidebar-right" class="sidebar collapsed">
+<div ng-controller="SidebarCtrl" id="sidebar-right" class="sidebar collapsed">
     <!-- Nav tabs -->
     <div class="sidebar-tabs">
         <ul role="tablist">
@@ -18,7 +18,9 @@
 
     <!-- Tab panes -->
     <div class="sidebar-content">
-        <div class="sidebar-pane" id="marker-info"></div>
+        <div class="sidebar-pane" id="marker-info">
+        	<marker-info-sidebar ng-model="current"></marker-info-sidebar>
+        </div>
 
         <div class="sidebar-pane" id="profile">
             <h1 class="sidebar-header">Profile<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>

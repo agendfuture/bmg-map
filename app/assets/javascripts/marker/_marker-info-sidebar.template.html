@@ -1,0 +1,20 @@
+<h1 class="sidebar-header">
+	Marker Info
+	<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+</h1>
+
+<p>
+	<b>Name: {{ $ctrl.current.marker.name }}</b>
+	<br>
+	Beschreibung: {{ $ctrl.current.marker.description }}
+	<br>
+	Immobilienhai: {{ $ctrl.current.marker.company }}
+	<br><br>
+	Koordinaten:
+	<br>
+	{{ $ctrl.current.marker.lat }} LAT, {{ $ctrl.current.marker.lng }} LNG
+</p>
+
+<p>
+	<a href="{{ $ctrl.current.marker.url }}" target="_blank">Bearbeiten</a>
+</p>

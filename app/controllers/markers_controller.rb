@@ -4,7 +4,7 @@ class MarkersController < ApplicationController
   # GET /markers
   # GET /markers.json
   def index
-    @markers = Marker.all
+    @markers = Marker.all.includes(:companies)
   end
 
   # GET /markers/1

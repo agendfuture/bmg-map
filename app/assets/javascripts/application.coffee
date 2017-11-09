@@ -17,16 +17,18 @@
 #= require jquery_ujs
 #= require turbolinks
 #= require underscore/underscore
+#= require angular/angular
+#= require angular-rails-templates
 #= require leaflet
 #= require leaflet-contextmenu/dist/leaflet.contextmenu
 #= require sidebar-v2/js/leaflet-sidebar
 #= require_tree .
 
+window.BmgApp = { }
 BmgApp.LeafletGeosearch = require('leaflet-geosearch')
 
-$(window).load ->
-	if ($("#map").length)
-		@bmgMap = new BmgApp.BmgMap
-		BmgApp.Marker.load( (markers) ->
-			@bmgMap.initializeMarkers(markers)
-		)
+bmgApp = angular
+	.module('bmgApp', ['templates', 'marker', 'sidebar.controller', 'map'])
+	.controller('ApplicationCtrl', ['$scope', ($scope) ->
+
+	])
