@@ -14,8 +14,9 @@
 #= require jquery_ujs
 #= require turbolinks
 #= require leaflet
-#= require leaflet-geosearch/src/index
 #= require_tree .
+
+BmgApp.LeafletGeosearch = require('leaflet-geosearch')
 
 $(window).load ->
 	@bmgMap = new BmgApp.BmgMap

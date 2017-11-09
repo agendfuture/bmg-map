@@ -13,11 +13,14 @@ class BmgApp.BmgMap
 		        .setContent("You clicked the map at " + e.latlng.toString())
 		        .openOn(@map)
 
-		@map.on('click', onMapClick);
+		#@map.on('click', onMapClick);
 
 	showAddressAutoComplete: =>
-		provider = new OpenStreetMapProvider()
-		searchControl = new GeoSearchControl({ provider: provider })
+		provider = new BmgApp.LeafletGeosearch.OpenStreetMapProvider()
+		searchControl = new BmgApp.LeafletGeosearch.GeoSearchControl({
+			provider: provider,
+			style: 'bar'
+		})
 
 		@map.addControl(searchControl);
 
