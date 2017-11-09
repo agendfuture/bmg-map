@@ -16,6 +16,7 @@
 #= require underscore/underscore
 #= require leaflet
 #= require leaflet-contextmenu/dist/leaflet.contextmenu
+#= require sidebar-v2/js/leaflet-sidebar
 #= require_tree .
 
 BmgApp.LeafletGeosearch = require('leaflet-geosearch')

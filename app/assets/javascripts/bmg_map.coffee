@@ -39,35 +39,16 @@ class BmgApp.BmgMap
 			accessToken: 'pk.eyJ1IjoiYm1nLW1hcCIsImEiOiJjajlyMm5tamQ2NWRwMnFtcTR5Y2QwMW5sIn0.I6VW9O87epBW8Ndfk_0-zg'
 		}).addTo(@map)
 
-		#@showCoordinates()
+		@sidebar = L.control.sidebar('sidebar-right', {
+			position: 'right',
+			closeButton: true
+		}).addTo(@map)
+
+		@map.on('click', =>
+			@sidebar.close()
+		)
+
 		@showAddressAutocomplete()
-
-
-
-	# showCoordinates: =>
-	#   popup = L.popup()
-
-	#   createButton = (label, container) ->
-	#       btn = L.DomUtil.create('button', '', container)
-	#       btn.setAttribute('type', 'button')
-	#       btn.innerHTML = label
-	#       btn
-
-	#   onMapClick = (e) =>
-	#       container = L.DomUtil.create('div')
-	#       label = L.DomUtil.create('span', '', container)
-	#       label.innerHTML = "You clicked the map at " + e.latlng.toString()
-	#       addMarkerBtn = createButton('Einen Eintrag hinzufügen', container)
-
-	#       L.DomEvent.on(addMarkerBtn, 'click', @addMarker)
-
-	#       popup
-	#           .setLatLng(e.latlng)
-	#           #.setContent("You clicked the map at " + e.latlng.toString())
-	#           .setContent(container)
-	#           .openOn(@map)
-
-	#   @map.on('click', onMapClick);
 
 	showAddressAutocomplete: =>
 		provider = new BmgApp.LeafletGeosearch.OpenStreetMapProvider()
@@ -79,14 +60,18 @@ class BmgApp.BmgMap
 		@map.addControl(searchControl);
 
 	addMarkerToMap: (marker) =>
-		m = L.marker(marker.latlng).addTo(@map)
+		m = L.marker(marker).addTo(@map).on('click', =>
+			$('#marker-info').html('<h1 class="sidebar-header">Marker Info<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>' +
+				'<p><b>Name: '+ marker.name + '</b><br>Beschreibung: ' + marker.description + '<br><br>Koordinaten:<br>' + marker.lat + ' LAT, ' + marker.lng + ' LNG</p>')
+			@sidebar.open('marker-info')
+		).bindPopup("<b>Name: "+ marker.name + "</b><br>Beschreibung: " + marker.description + "<br><br>Koordinaten:<br>" + marker.lat + " LAT, " + marker.lng + " LNG")
+
+	createMarker: (marker) =>
+		@addMarkerToMap(marker)
 		new BmgApp.Marker(marker.latlng).save()
 
 	initializeMarkers: (markers) =>
-		_.each(markers, (marker) =>
-			m = L.marker(marker).addTo(@map)
-			m.bindPopup("<b>Name: "+ marker.name + "</b><br>Beschreibung: " + marker.description + "<br><br>Koordinaten:<br>" + marker.lat + " LAT, " + marker.lng + " LNG")
-		)
+		_.each(markers, @addMarkerToMap)
 
 	showCoordinates: (e) ->
 		alert(e.latlng)
