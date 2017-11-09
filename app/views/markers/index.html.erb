@@ -5,16 +5,25 @@
 <table>
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th>Name</th>
+      <th colspan="2">Koordinaten</th>
+      <th>aktueller Besitzer</th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @markers.each do |marker| %>
       <tr>
+        <td>#<%= marker.id %></td>
+        <td><%= marker.name %></td>
+        <td>Lat: <%= marker.lat %></td>
+        <td>Lng: <%= marker.lng %></td>
+        <td><%= marker.companies.last.try(:name) %></td>
         <td><%= link_to 'Show', marker %></td>
         <td><%= link_to 'Edit', edit_marker_path(marker) %></td>
-        <td><%= link_to 'Destroy', marker, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <!-- <td><%= link_to 'Destroy', marker, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +31,4 @@
 
 <br>
 
-<%= link_to 'New Marker', new_marker_path %>
+<%= link_to 'Zur Karte', root_path %> | <%= link_to 'Unternehmensliste', companies_path %>

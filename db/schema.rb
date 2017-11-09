@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171109134143) do
+ActiveRecord::Schema.define(version: 20171109155805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "companies_markers", force: :cascade do |t|
+    t.bigint "marker_id"
+    t.bigint "company_id"
+    t.index ["company_id"], name: "index_companies_markers_on_company_id"
+    t.index ["marker_id"], name: "index_companies_markers_on_marker_id"
+  end
 
   create_table "markers", force: :cascade do |t|
     t.float "lat"
