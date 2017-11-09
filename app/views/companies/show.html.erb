@@ -1,14 +1,16 @@
-<p id="notice"><%= notice %></p>
+<div class="container-fluid">
+	<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @company.name %>
-</p>
+	<p>
+	  <strong>Name:</strong>
+	  <%= @company.name %>
+	</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @company.description %>
-</p>
+	<p>
+	  <strong>Description:</strong>
+	  <%= @company.description %>
+	</p>
 
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+	<%= link_to 'Edit', edit_company_path(@company) %> |
+	<%= link_to 'Back', companies_path %>
+</div>

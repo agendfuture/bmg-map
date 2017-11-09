@@ -11,17 +11,21 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :marker_name %>
+  <div class="form-group row">
+    <%= form.label :name, class: "col-2 col-form-label" %>
+    <div class="col-10">
+      <%= form.text_field :name, id: :marker_name, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description, id: :marker_description %>
+  <div class="form-group row">
+    <%= form.label :description, class: "col-2 col-form-label" %>
+    <div class="col-10">
+      <%= form.text_area :description, id: :marker_description, class: "form-control", style: "min-height:100px;" %>
+    </div>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit nil, class: "btn btn-primary" %>
   </div>
 <% end %>

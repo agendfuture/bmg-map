@@ -1,34 +1,37 @@
-<p id="notice"><%= notice %></p>
+<div class="container-fluid">
+  <p id="notice"><%= notice %></p>
 
-<h1>Markers</h1>
+  <h1>Markers</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th colspan="2">Koordinaten</th>
-      <th>aktueller Besitzer</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @markers.each do |marker| %>
+  <table class="table table-striped">
+    <thead class="thead-dark">
       <tr>
-        <td>#<%= marker.id %></td>
-        <td><%= marker.name %></td>
-        <td>Lat: <%= marker.lat %></td>
-        <td>Lng: <%= marker.lng %></td>
-        <td><%= marker.companies.last.try(:name) %></td>
-        <td><%= link_to 'Show', marker %></td>
-        <td><%= link_to 'Edit', edit_marker_path(marker) %></td>
-        <!-- <td><%= link_to 'Destroy', marker, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+        <th>ID</th>
+        <th>Name</th>
+        <th colspan="2">Koordinaten</th>
+        <th>aktueller Besitzer</th>
+        <th colspan="2"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @markers.each do |marker| %>
+        <tr>
+          <td>#<%= marker.id %></td>
+          <td><%= marker.name %></td>
+          <td>Lat: <%= marker.lat %></td>
+          <td>Lng: <%= marker.lng %></td>
+          <td><%= marker.companies.last.try(:name) %></td>
+          <td><%= link_to 'Show', marker %></td>
+          <td><%= link_to 'Edit', edit_marker_path(marker) %></td>
+          <!-- <td><%= link_to 'Destroy', marker, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'Zur Karte', root_path %> | <%= link_to 'Unternehmensliste', companies_path %>
+  <br>
+
+  <%= link_to 'Zur Karte', root_path %> | <%= link_to 'Unternehmensliste', companies_path %>
+
+</div>

@@ -1,10 +1,13 @@
-<p id="notice"><%= notice %></p>
+<div class="container-fluid">
 
-<div>
-	<p>Name: <%= @marker.name %></p>
-	<p>Beschreibung: <%= @marker.description %></p>
-	<p>Koordinaten: <%= @marker.lat %>, <%= @marker.lng %></p>
+	<p id="notice"><%= notice %></p>
+
+	<div>
+		<p>Name: <%= @marker.name %></p>
+		<p>Beschreibung: <%= @marker.description %></p>
+		<p>Koordinaten: <%= @marker.lat %>, <%= @marker.lng %></p>
+	</div>
+
+	<%= link_to 'Edit', edit_marker_path(@marker) %> |
+	<%= link_to 'Back', markers_path %>
 </div>
-
-<%= link_to 'Edit', edit_marker_path(@marker) %> |
-<%= link_to 'Back', markers_path %>

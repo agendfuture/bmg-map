@@ -28,7 +28,7 @@ class BmgApp.BmgMap
 			}]
 		}
 
-		$('#map').height($(window).height() - 16)
+		$('#map').height($(window).height())
 
 		@map = L.map('map', config).setView([52.518, 13.407], 13)
 
