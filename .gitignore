@@ -54,3 +54,7 @@ bower.json
 /log/*
 !/log/.keep
 /tmp
+
+# node files
+/node_modules
+npm-debug.log
