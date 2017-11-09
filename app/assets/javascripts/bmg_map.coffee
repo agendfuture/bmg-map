@@ -4,8 +4,6 @@
 window.BmgApp = { }
 
 class BmgApp.BmgMap
-	url: "markers"
-
 	constructor: ->
 		config = {
 			contextmenu: true,
@@ -18,7 +16,7 @@ class BmgApp.BmgMap
 				callback: @centerMap
 			}, {
 				text: 'add Marker',
-				callback: @addMarker
+				callback: @addMarkerToMap
 			}, '-', {
 				text: 'Zoom in',
 				#icon: 'images/zoom-in.png',
@@ -80,20 +78,15 @@ class BmgApp.BmgMap
 
 		@map.addControl(searchControl);
 
-	addMarker: (e) =>
-		marker = L.marker(e.latlng).addTo(@map);
-		$.ajax({
-		  type: "POST",
-		  url: @url,
-		  data: {
-		  	marker: {
-		  		lat: e.latlng.lat,
-		  		lng: e.latlng.lng
-		  	}
-		  },
-		  #success: success,
-		  dataType: "json"
-		});
+	addMarkerToMap: (marker) =>
+		m = L.marker(marker.latlng).addTo(@map)
+		new BmgApp.Marker(marker.latlng).save()
+
+	initializeMarkers: (markers) =>
+		_.each(markers, (marker) =>
+			m = L.marker(marker).addTo(@map)
+			m.bindPopup("<b>Name: "+ marker.name + "</b><br>Beschreibung: " + marker.description + "<br><br>Koordinaten:<br>" + marker.lat + " LAT, " + marker.lng + " LNG")
+		)
 
 	showCoordinates: (e) ->
 		alert(e.latlng)

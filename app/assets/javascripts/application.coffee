@@ -13,6 +13,7 @@
 #= require jquery
 #= require jquery_ujs
 #= require turbolinks
+#= require underscore/underscore
 #= require leaflet
 #= require leaflet-contextmenu/dist/leaflet.contextmenu
 #= require_tree .
@@ -20,4 +21,8 @@
 BmgApp.LeafletGeosearch = require('leaflet-geosearch')
 
 $(window).load ->
-	@bmgMap = new BmgApp.BmgMap
+	if ($("#map").length)
+		@bmgMap = new BmgApp.BmgMap
+		BmgApp.Marker.load( (markers) ->
+			@bmgMap.initializeMarkers(markers)
+		)
