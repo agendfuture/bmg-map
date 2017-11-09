@@ -14,6 +14,7 @@
 #= require jquery_ujs
 #= require turbolinks
 #= require leaflet
+#= require leaflet-contextmenu/dist/leaflet.contextmenu
 #= require_tree .
 
 BmgApp.LeafletGeosearch = require('leaflet-geosearch')
