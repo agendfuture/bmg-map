@@ -5,6 +5,7 @@
 	<div>
 		<p>Name: <%= @marker.name %></p>
 		<p>Beschreibung: <%= @marker.description %></p>
+		<p>Immobilienhai: <%= @marker.companies.last ? (link_to @marker.companies.last.try(:name), company_path(@marker.companies.last)) : '' %></p>
 		<p>Koordinaten: <%= @marker.lat %>, <%= @marker.lng %></p>
 	</div>
 

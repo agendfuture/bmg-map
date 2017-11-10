@@ -4,7 +4,7 @@ class MarkersController < ApplicationController
   # GET /markers
   # GET /markers.json
   def index
-    @markers = Marker.all.includes(:companies)
+    @markers = Marker.all.includes(:companies).order(:id)
   end
 
   # GET /markers/1
@@ -69,6 +69,6 @@ class MarkersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def marker_params
-      params.require(:marker).permit(:lat, :lng, :name, :description)
+      params.require(:marker).permit(:lat, :lng, :name, :description, :company_ids)
     end
 end

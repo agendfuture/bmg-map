@@ -4,6 +4,8 @@
 
 	<%= render 'form', company: @company %>
 
+	<%= render 'markers/table', markers: @company.markers %>
+
 	<%= link_to 'Show', @company %> |
 	<%= link_to 'Back', companies_path %>
 </div>
