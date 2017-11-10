@@ -28,11 +28,9 @@
   <div class="form-group row">
     <%= form.label :company_ids, "Immobilienhai", class: "col-2 col-form-label" %>
     <div class="col-10">
-      <%= form.collection_select :company_ids, Company.order(:name), :id, :name, {}, {multiple: false, class: "form-control"} %>
+      <%= form.collection_select :company_ids, Company.order(:name), :id, :name, {include_blank: true}, {multiple: false, class: "form-control"} %>
     </div>
   </div>
-
-   <%# f.select :companies_id, Document.all.collect { |p| p.id }, include_blank: true %>
 
   <div class="actions">
     <%= form.submit nil, class: "btn btn-primary" %>
