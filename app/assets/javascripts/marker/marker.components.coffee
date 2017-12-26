@@ -1,10 +1,9 @@
 angular
-  .module('marker.components', [])
-  .component('markerInfoSidebar', {
-	templateUrl: 'marker/_marker-info-sidebar.template.html',
+  .module('marker.components', ['marker.controllers'])
+  .component('markerShow', {
+	templateUrl: 'marker/marker.show.html',
 	bindings: {
 	  "current": "=ngModel"
 	},
-	controller: ['$scope', ($scope) ->
-	]
+	controller: 'MarkerShowCtrl'
   })

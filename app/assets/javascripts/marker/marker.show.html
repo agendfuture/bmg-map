@@ -1,0 +1,18 @@
+<div>
+	<dl class="row">
+		<dt class="col-sm-4">Name</dt>
+		<dd class="col-sm-8">{{ marker.name }}</dd>
+
+		<dt class="col-sm-4">Beschreibung</dt>
+		<dd class="col-sm-8">{{ marker.description }}</dd>
+
+		<dt class="col-sm-4">Immobilienhai</dt>
+		<dd class="col-sm-8">{{ marker.company.name }}</dd>
+
+		<dt class="col-sm-4">Koordinaten</dt>
+		<dd class="col-sm-8">{{ marker.lat }} LAT, {{ marker.lng }} LNG</dd>
+	</dl>
+	<p>
+		<a ui-sref="^.edit({markerId: marker.id})" href="" class="btn btn-primary">Bearbeiten</a>
+	</p>
+</div>

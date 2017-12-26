@@ -19,7 +19,12 @@
     <!-- Tab panes -->
     <div class="sidebar-content">
         <div class="sidebar-pane" id="marker-info">
-        	<marker-info-sidebar ng-model="current"></marker-info-sidebar>
+            <h1 class="sidebar-header">
+                Marker Info
+                <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+            </h1>
+
+            <div ui-view></div>
         </div>
 
         <div class="sidebar-pane" id="profile">

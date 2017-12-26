@@ -14,6 +14,10 @@
         "sidebar-v2": "~> 0.4.0",
         "underscore": "~> 1.8.3",
         "font-awesome": "~> 4.7",
-        "angular": "~>1.6.6"
+        "angular": "~>1.6.6",
+        "@uirouter/angularjs": "1.0.12",
+        "angularjs-rails-resource": "~>2.2.2",
+        "angular-cookies": "latest",
+        "ui-select": "latest"
     }
 }

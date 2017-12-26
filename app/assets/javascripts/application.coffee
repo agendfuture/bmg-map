@@ -19,16 +19,104 @@
 #= require underscore/underscore
 #= require angular/angular
 #= require angular-rails-templates
+#= require @uirouter/angularjs/lib/index
+#= require angularjs-rails-resource/angularjs-rails-resource
 #= require leaflet
 #= require leaflet-contextmenu/dist/leaflet.contextmenu
 #= require sidebar-v2/js/leaflet-sidebar
+#= require angular-cookies
+#= require ui-select/index
 #= require_tree .
 
 window.BmgApp = { }
 BmgApp.LeafletGeosearch = require('leaflet-geosearch')
 
 bmgApp = angular
-	.module('bmgApp', ['templates', 'marker', 'sidebar.controller', 'map'])
+	.module('bmgApp', [
+		'ui.router',
+		'rails',
+		'ngCookies',
+		'ui.select',
+		'templates',
+		'marker',
+		'company',
+		'sidebar.controller',
+		'map'
+	])
+
+	.config(['$httpProvider', ($httpProvider) ->
+			$httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
+	])
+
+	.constant('csrfCookieName', 'XSRF-TOKEN')
+	.constant('csrfHeaderName', 'X-CSRF-Token')
+	.provider('myCSRF',['csrfHeaderName', 'csrfCookieName', (headerName, cookieName) ->
+		allowedMethods = ['GET']
+
+		@setHeaderName = (n) ->
+			headerName = n
+
+		@setCookieName = (n) ->
+			cookieName = n
+
+		@setAllowedMethods = (n) ->
+			allowedMethods = n
+
+		@$get = ['$cookies', ($cookies) ->
+			return {
+				'request': (config) ->
+						if(allowedMethods.indexOf(config.method) == -1)
+							# do something on success
+							config.headers[headerName] = $cookies.get(cookieName)
+
+						return config
+			}
+		]
+
+		return @
+	])
+
+	.config(['$httpProvider', ($httpProvider) ->
+			$httpProvider.interceptors.push('myCSRF')
+	])
+
+	.config(['$stateProvider', ($stateProvider) ->
+		$stateProvider
+			.state({
+				name: 'marker',
+				url: '/marker',
+				resolve: {
+					markers: ['Marker', (Marker) ->
+						return Marker.query()
+					]
+				}
+			})
+			.state({
+				name: 'marker.show',
+				url: '/{markerId}',
+				templateUrl: 'marker/marker.show.html',
+				controller: 'MarkerShowCtrl',
+				resolve: {
+					marker: ['$stateParams', 'Marker', ($stateParams, Marker) ->
+						return Marker.get $stateParams.markerId
+					]
+				}
+			})
+			.state({
+				name: 'marker.edit',
+				url: '/{markerId}/edit',
+				templateUrl: 'marker/marker.edit.html',
+				controller: 'MarkerEditCtrl',
+				resolve: {
+					marker: ['$stateParams', 'Marker', ($stateParams, Marker) ->
+						return Marker.get $stateParams.markerId
+					],
+					companies: ['Company', (Company)->
+						return Company.query()
+					]
+				}
+			})
+	])
 	.controller('ApplicationCtrl', ['$scope', ($scope) ->
 
 	])

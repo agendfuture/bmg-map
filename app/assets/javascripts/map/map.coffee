@@ -1,6 +1,6 @@
 angular
 	.module('map', ['map.controller'])
-	.factory("MapFactory", ['MarkerFactory', '$rootScope', (Marker, $rootScope) ->
+	.factory("MapFactory", ['Marker', '$rootScope', (Marker, $rootScope) ->
 		class Map
 			constructor: ->
 				config = {
@@ -66,7 +66,7 @@ angular
 				)#.bindPopup("<b>Name: "+ marker.name + "</b><br>Beschreibung: " + marker.description + "<br><br>Koordinaten:<br>" + marker.lat + " LAT, " + marker.lng + " LNG")
 
 			createMarker: (marker) =>
-				new Marker(marker.latlng).save().then((marker) =>
+				new Marker({lng: marker.latlng.lng, lat: marker.latlng.lat}).save().then((marker) =>
 					@addMarkerToMap(marker)
 				)
 
