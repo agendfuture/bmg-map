@@ -1,6 +1,6 @@
 angular
 	.module('map', ['map.controller'])
-	.factory("MapFactory", ['Marker', '$rootScope', (Marker, $rootScope) ->
+  	.factory("MapFactory", ['Marker', '$state', (Marker, $state) ->
 		class Map
 			constructor: ->
 				config = {
@@ -59,11 +59,8 @@ angular
 
 			addMarkerToMap: (marker) =>
 				m = L.marker(marker).addTo(@map).on('click', =>
-					# $('#marker-info').html('<h1 class="sidebar-header">Marker Info<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>' +
-					# 	'<p><b>Name: '+ marker.name + '</b><br>Beschreibung: ' + marker.description + '<br><br>Koordinaten:<br>' + marker.lat + ' LAT, ' + marker.lng + ' LNG</p>')
-					$rootScope.$broadcast('marker.open', marker)
-					@sidebar.open('marker-info')
-				)#.bindPopup("<b>Name: "+ marker.name + "</b><br>Beschreibung: " + marker.description + "<br><br>Koordinaten:<br>" + marker.lat + " LAT, " + marker.lng + " LNG")
+					$state.go('marker.show', { markerId: marker.id })
+				)
 
 			createMarker: (marker) =>
 				new Marker({lng: marker.latlng.lng, lat: marker.latlng.lat}).save().then((marker) =>

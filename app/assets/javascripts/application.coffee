@@ -83,13 +83,17 @@ bmgApp = angular
 	.config(['$stateProvider', ($stateProvider) ->
 		$stateProvider
 			.state({
-				name: 'marker',
-				url: '/marker',
+				name: 'root',
+				url: '/',
 				resolve: {
 					markers: ['Marker', (Marker) ->
 						return Marker.query()
 					]
 				}
+			})
+			.state({
+				name: 'marker',
+				url: '/marker'
 			})
 			.state({
 				name: 'marker.show',

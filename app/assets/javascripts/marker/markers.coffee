@@ -16,34 +16,4 @@ angular
         			)
 				)
 			})
-
-			@url: "markers"
-			@markers: []
-
-			# save: =>
-			# 	$.ajax({
-			# 		type: "POST",
-			# 		url: Marker.url,
-			# 		data: {
-			# 			marker: {
-			# 				lat: @coordinates.lat,
-			# 				lng: @coordinates.lng
-			# 			}
-			# 		},
-			# 		success: (response) =>
-			# 			angular.extend(@, response)
-			# 		,
-			# 		dataType: "json"
-			# 	})
-
-			@load: (success) ->
-				$.ajax({
-					type: "GET",
-					url: @url
-					success: (response) ->
-						@markers = response
-						success(@markers)
-					,
-					dataType: "json"
-				});
 	])

@@ -1,9 +1,13 @@
 angular
 	.module('marker.controllers', [])
 	.controller('MarkerShowCtrl', ['$scope', 'marker', ($scope, marker) ->
+		$scope.bmgMap.sidebar.open('marker-info')
+
 		$scope.marker = marker
 	])
 	.controller('MarkerEditCtrl', ['$scope', '$state', '$sce', 'marker', 'companies', ($scope, $state, $sce, marker, companies) ->
+		$scope.bmgMap.sidebar.open('marker-info')
+
 		$scope.marker = marker
 		$scope.companies = companies
 

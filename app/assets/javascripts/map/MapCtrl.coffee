@@ -1,10 +1,10 @@
 angular
 	.module('map.controller', [])
-	.controller("MapCtrl", ['MapFactory', 'Marker', '$scope', (Map, Marker, $scope) ->
+	.controller("MapCtrl", ['MapFactory', 'Marker', '$rootScope', (Map, Marker, $rootScope) ->
 		if ($("#map").length)
-			$scope.bmgMap = new Map
+			$rootScope.bmgMap = new Map
 
-			Marker.load( (markers) ->
-				$scope.bmgMap.initializeMarkers(markers)
+			Marker.query().then( (markers) ->
+				$rootScope.bmgMap.initializeMarkers(markers)
 			)
 	])
