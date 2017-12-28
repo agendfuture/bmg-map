@@ -93,7 +93,15 @@ bmgApp = angular
 			})
 			.state({
 				name: 'marker',
-				url: '/marker'
+				url: '/marker',
+				resolve: {
+					map: ['$rootScope', ($rootScope) ->
+						return $rootScope.bmgMap
+					]
+				},
+				onEnter: ['map', (map) ->
+					map.sidebar.open('marker-info')
+				]
 			})
 			.state({
 				name: 'marker.show',
@@ -131,7 +139,15 @@ bmgApp = angular
 			})
 			.state({
 				name: 'company',
-				url: '/company'
+				url: '/company',
+				resolve: {
+					map: ['$rootScope', ($rootScope) ->
+						return $rootScope.bmgMap
+					]
+				},
+				onExit: ['map', (map) ->
+					map.setCompanyLayerVisible(undefined)
+				]
 			})
 			.state({
 				name: 'company.show',
@@ -146,7 +162,11 @@ bmgApp = angular
 						templateUrl: 'company/company.show.html',
 						controller: 'CompanyShowCtrl'
 					}
-				}
+				},
+				onEnter: ['map', 'company', (map, company) ->
+					map.sidebar.open('company-info')
+					map.setCompanyLayerVisible(company.id)
+				]
 			})
 			.state({
 				name: 'company.edit',
@@ -161,7 +181,12 @@ bmgApp = angular
 						templateUrl: 'company/company.edit.html',
 						controller: 'CompanyEditCtrl'
 					}
-				}
+				},
+				onEnter: ['map', 'company', (map, company) ->
+					map.sidebar.open('company-info')
+					map.setCompanyLayerVisible(company.id)
+				]
+
 			})
 	])
 	.controller('ApplicationCtrl', ['$scope', ($scope) ->

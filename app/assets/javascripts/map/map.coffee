@@ -48,6 +48,8 @@ angular
 
 				@showAddressAutocomplete()
 
+				@layers = {}
+
 			showAddressAutocomplete: =>
 				provider = new BmgApp.LeafletGeosearch.OpenStreetMapProvider()
 				searchControl = new BmgApp.LeafletGeosearch.GeoSearchControl({
@@ -58,9 +60,16 @@ angular
 				@map.addControl(searchControl);
 
 			addMarkerToMap: (marker) =>
-				m = L.marker(marker).addTo(@map).on('click', =>
+				m = L.marker(marker).on('click', =>
 					$state.go('marker.show', { markerId: marker.id })
 				)
+
+				companyId = if marker.company then marker.company.id else 0
+				if _.isUndefined(@layers[companyId])
+					@layers[companyId] = L.featureGroup([m])
+					@layers[companyId].addTo(@map)
+				else
+					@layers[companyId].addLayer(m)
 
 			createMarker: (marker) =>
 				new Marker({lng: marker.latlng.lng, lat: marker.latlng.lat}).save().then((marker) =>
@@ -81,5 +90,23 @@ angular
 
 			zoomOut: (e) =>
 				@map.zoomOut()
+
+			setCompanyLayerVisible: (companyId) =>
+				if _.isUndefined(@layers[companyId])
+					_.chain(@layers).values().each((layer) ->
+						layer.eachLayer((marker) ->
+							marker.setOpacity(1)
+						)
+					)
+				else
+					_.chain(@layers).values().each((layer) ->
+						layer.eachLayer((marker) ->
+							marker.setOpacity(0)
+						)
+					)
+
+					@layers[companyId].eachLayer((layer) ->
+						layer.setOpacity(1)
+					)
 	])
 
