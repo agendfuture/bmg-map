@@ -1,5 +1,8 @@
 angular
 	.module('marker.controllers', [])
+	.controller('MarkerIndexCtrl', ['$scope', 'markers', ($scope, markers) ->
+		$scope.markers = markers
+	])
 	.controller('MarkerShowCtrl', ['$scope', 'marker', ($scope, marker) ->
 		$scope.marker = marker
 	])

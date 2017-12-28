@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 angular
-	.module('company', ['company.controllers'])
+	.module('company', ['company.controllers', 'company.components'])
 	.factory("Company", ['RailsResource', (RailsResource) ->
 		class Company extends RailsResource
 			@configure({

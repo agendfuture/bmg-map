@@ -3,3 +3,19 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #map { height: 480px; }
+
+.sidebar-content {
+	overflow: hidden !important;
+
+	.sidebar-pane {
+		height: 100%;
+
+		.ui-view-content {
+			height: 100%;
+			overflow: scroll;
+
+			padding-top: 10px;
+		}
+	}
+
+}

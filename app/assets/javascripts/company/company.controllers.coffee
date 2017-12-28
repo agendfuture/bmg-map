@@ -1,5 +1,8 @@
 angular
 	.module('company.controllers', [])
+	.controller('CompanyIndexCtrl', ['$scope', 'companies', ($scope, companies) ->
+		$scope.companies = companies
+	])
 	.controller('CompanyShowCtrl', ['$scope', 'company', ($scope, company) ->
 		$scope.company = company
 	])

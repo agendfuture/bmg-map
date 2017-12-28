@@ -1,0 +1,14 @@
+<table class="table">
+	<thead class="thead-light">
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Name</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="item in $ctrl.companies">
+			<th scope="row"><a href="" ui-sref="company.show({companyId: item.id})">{{ item.id }}</a></th>
+			<td><a href="" ui-sref="company.show({companyId: item.id})">{{ item.name }}</a></td>
+		</tr>
+	</tbody>
+</table>

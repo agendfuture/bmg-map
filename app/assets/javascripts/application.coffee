@@ -97,11 +97,20 @@ bmgApp = angular
 				resolve: {
 					map: ['$rootScope', ($rootScope) ->
 						return $rootScope.bmgMap
+					],
+					markers: ['Marker', (Marker) ->
+						return Marker.query()
 					]
 				},
 				onEnter: ['map', (map) ->
 					map.sidebar.open('marker-info')
-				]
+				],
+				views: {
+					'marker@': {
+						templateUrl: 'marker/marker.index.html',
+						controller: 'MarkerIndexCtrl'
+					}
+				}
 			})
 			.state({
 				name: 'marker.show',
@@ -140,11 +149,24 @@ bmgApp = angular
 			.state({
 				name: 'company',
 				url: '/company',
+				views: {
+					'company@': {
+						templateUrl: 'company/company.index.html',
+						controller: 'CompanyIndexCtrl'
+					}
+				},
 				resolve: {
 					map: ['$rootScope', ($rootScope) ->
 						return $rootScope.bmgMap
+					],
+					companies: ['Company', (Company) ->
+						return Company.query()
 					]
 				},
+				onEnter: ['map', (map) ->
+					map.sidebar.open('company-info')
+					map.setCompanyLayerVisible(undefined)
+				]
 				onExit: ['map', (map) ->
 					map.setCompanyLayerVisible(undefined)
 				]

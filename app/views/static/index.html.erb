@@ -5,8 +5,8 @@
     <!-- Nav tabs -->
     <div class="sidebar-tabs">
         <ul role="tablist">
-            <li><a href="#marker-info" role="tab"><i class="fa fa-map-marker"></i></a></li>
-            <li><a href="#company-info" role="tab"><i class="fa fa-building-o"></i></a></li>
+            <li><a href="#marker-info" role="tab" ui-sref="marker" ui-sref-opts="{reload: true}"><i class="fa fa-map-marker"></i></a></li>
+            <li><a href="#company-info" role="tab" ui-sref="company" ui-sref-opts="{reload: true}"><i class="fa fa-building-o"></i></a></li>
             <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
             <li class="disabled"><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
             <li><a href="https://github.com/agentfuture/bmg-map" role="tab" target="_blank"><i class="fa fa-github"></i></a></li>
@@ -25,7 +25,7 @@
                 <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
             </h1>
 
-            <div ui-view="marker"></div>
+            <div ui-view="marker" class="ui-view-content"></div>
         </div>
 
         <div class="sidebar-pane" id="company-info">
@@ -34,7 +34,7 @@
                 <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
             </h1>
 
-            <div ui-view="company"></div>
+            <div ui-view="company" class="ui-view-content"></div>
         </div>
 
         <div class="sidebar-pane" id="profile">
