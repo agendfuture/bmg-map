@@ -29,6 +29,10 @@
 			Koordinaten:
 			<br>
 			{{ marker.lat }} LAT, {{ marker.lng }} LNG
+			<br>
+			Adresse
+			<br>
+			{{ marker.address }}
 		</p>
 		<button type="submit" class="btn btn-primary" ng-click="save()">Speichern</button>
 		<a ui-sref="^.show({markerId: marker.id})" href="" class="btn btn-link" >Zurück</a>

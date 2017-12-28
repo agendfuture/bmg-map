@@ -1,4 +1,4 @@
-json.extract! marker, :id, :created_at, :updated_at, :lat, :lng, :name, :description
+json.extract! marker, :id, :created_at, :updated_at, :lat, :lng, :name, :description, :address
 
 if marker.companies.last
 	 json.company marker.companies.last, partial: 'companies/company', as: :company

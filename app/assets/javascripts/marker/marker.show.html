@@ -11,6 +11,9 @@
 
 		<dt class="col-sm-4">Koordinaten</dt>
 		<dd class="col-sm-8">{{ marker.lat }} LAT, {{ marker.lng }} LNG</dd>
+
+		<dt class="col-sm-4">Adresse</dt>
+		<dd class="col-sm-8">{{ marker.address }}</dd>
 	</dl>
 	<p>
 		<a ui-sref="^.edit({markerId: marker.id})" href="" class="btn btn-primary">Bearbeiten</a>
