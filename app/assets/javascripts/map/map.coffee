@@ -60,7 +60,7 @@ angular
 				@map.addControl(searchControl);
 
 			addMarkerToMap: (marker) =>
-				m = L.marker(marker).on('click', =>
+				m = L.marker(marker).bindTooltip(marker.address).on('click', =>
 					$state.go('marker.show', { markerId: marker.id })
 				)
 
