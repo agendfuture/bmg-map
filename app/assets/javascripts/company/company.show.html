@@ -1,0 +1,16 @@
+<div>
+	<dl class="row" style="margin-top: 10px;">
+		<dt class="col-sm-4">Name</dt>
+		<dd class="col-sm-8">{{ company.name }}</dd>
+
+		<dt class="col-sm-4">Beschreibung</dt>
+		<dd class="col-sm-8">{{ company.description }}</dd>
+	</dl>
+
+	<h5>Eingetragene Adressen</h5>
+	<markers-list ng-model="company.markers"></markers-list>
+
+	<p>
+		<a ui-sref="^.edit({companyId: company.id})" href="" class="btn btn-primary">Bearbeiten</a>
+	</p>
+</div>

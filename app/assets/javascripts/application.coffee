@@ -98,19 +98,21 @@ bmgApp = angular
 			.state({
 				name: 'marker.show',
 				url: '/{markerId}',
-				templateUrl: 'marker/marker.show.html',
-				controller: 'MarkerShowCtrl',
 				resolve: {
 					marker: ['$stateParams', 'Marker', ($stateParams, Marker) ->
 						return Marker.get $stateParams.markerId
 					]
+				},
+				views: {
+					'marker@': {
+						templateUrl: 'marker/marker.show.html',
+						controller: 'MarkerShowCtrl'
+					}
 				}
 			})
 			.state({
 				name: 'marker.edit',
 				url: '/{markerId}/edit',
-				templateUrl: 'marker/marker.edit.html',
-				controller: 'MarkerEditCtrl',
 				resolve: {
 					marker: ['$stateParams', 'Marker', ($stateParams, Marker) ->
 						return Marker.get $stateParams.markerId
@@ -118,6 +120,47 @@ bmgApp = angular
 					companies: ['Company', (Company)->
 						return Company.query()
 					]
+				},
+				views: {
+					'marker@': {
+						templateUrl: 'marker/marker.edit.html',
+						controller: 'MarkerEditCtrl'
+
+					}
+				}
+			})
+			.state({
+				name: 'company',
+				url: '/company'
+			})
+			.state({
+				name: 'company.show',
+				url: '/{companyId}',
+				resolve: {
+					company: ['$stateParams', 'Company', ($stateParams, Company) ->
+						return Company.get $stateParams.companyId
+					]
+				},
+				views: {
+					'company@': {
+						templateUrl: 'company/company.show.html',
+						controller: 'CompanyShowCtrl'
+					}
+				}
+			})
+			.state({
+				name: 'company.edit',
+				url: '/{companyId}/edit',
+				resolve: {
+					company: ['$stateParams', 'Company', ($stateParams, Company) ->
+						return Company.get $stateParams.companyId
+					]
+				},
+				views: {
+					'company@': {
+						templateUrl: 'company/company.edit.html',
+						controller: 'CompanyEditCtrl'
+					}
 				}
 			})
 	])

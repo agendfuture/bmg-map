@@ -1,0 +1,22 @@
+<div>
+	<form style="margin-top: 10px;">
+		<div class="form-group">
+			<label for="companyInputName">Name</label>
+			<input type="text" ng-model="company.name" class="form-control" id="companyInputName" aria-describedby="companyNameHelp" placeholder="Name eingeben">
+			<small id="companyNameHelp" class="form-text text-muted">Name zum wiedererkennen</small>
+		</div>
+		<div class="form-group">
+			<label for="companyInputDescription">Beschreibung</label>
+			<textarea type="text" ng-model="company.description" class="form-control" id="companyInputDescription" aria-describedby="companyDescriptionHelp" placeholder="Beschreibung eingeben"></textarea>
+			<small id="companyDescriptionHelp" class="form-text text-muted">Beschreibung zum wiedererkennen</small>
+		</div>
+
+		<button type="submit" class="btn btn-primary" ng-click="save()">Speichern</button>
+		<a ui-sref="^.show({companyId: company.id})" href="" class="btn btn-link" >Zurück</a>
+	</form>
+
+	<div style="margin-top: 10px">
+		<h5>Eingetragene Adressen</h5>
+		<markers-list ng-model="company.markers"></markers-list>
+	</div>
+</div>

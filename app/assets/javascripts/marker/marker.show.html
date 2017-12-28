@@ -7,7 +7,7 @@
 		<dd class="col-sm-8">{{ marker.description }}</dd>
 
 		<dt class="col-sm-4">Immobilienhai</dt>
-		<dd class="col-sm-8">{{ marker.company.name }}</dd>
+		<dd class="col-sm-8"><a href="" ui-sref="company.show({companyId: marker.company.id})">{{ marker.company.name }}</a></dd>
 
 		<dt class="col-sm-4">Koordinaten</dt>
 		<dd class="col-sm-8">{{ marker.lat }} LAT, {{ marker.lng }} LNG</dd>
