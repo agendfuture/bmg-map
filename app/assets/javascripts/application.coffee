@@ -86,9 +86,6 @@ bmgApp = angular
 				name: 'root',
 				url: '/',
 				resolve: {
-					markers: ['Marker', (Marker) ->
-						return Marker.query()
-					]
 				}
 			})
 			.state({
@@ -97,9 +94,6 @@ bmgApp = angular
 				resolve: {
 					map: ['$rootScope', ($rootScope) ->
 						return $rootScope.bmgMap
-					],
-					markers: ['Marker', (Marker) ->
-						return Marker.query()
 					]
 				},
 				onEnter: ['map', (map) ->
@@ -158,9 +152,6 @@ bmgApp = angular
 				resolve: {
 					map: ['$rootScope', ($rootScope) ->
 						return $rootScope.bmgMap
-					],
-					companies: ['Company', (Company) ->
-						return Company.query()
 					]
 				},
 				onEnter: ['map', (map) ->

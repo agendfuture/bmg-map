@@ -1,7 +1,10 @@
 angular
 	.module('marker.controllers', [])
-	.controller('MarkerIndexCtrl', ['$scope', 'markers', ($scope, markers) ->
-		$scope.markers = markers
+	.controller('MarkerIndexCtrl', ['$scope', 'Marker', ($scope, Marker) ->
+
+		Marker.query().then((markers) ->
+			$scope.markers = markers
+		)
 	])
 	.controller('MarkerShowCtrl', ['$scope', 'marker', ($scope, marker) ->
 		$scope.marker = marker

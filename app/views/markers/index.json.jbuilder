@@ -1,1 +1,1 @@
-json.array! @markers, partial: 'markers/marker', as: :marker
+json.array! @markers, partial: 'markers/marker.index', as: :marker
