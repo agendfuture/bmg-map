@@ -23,20 +23,22 @@ namespace :web_scraper do
 
 					puts "EXPOSE ID: " + expose_id
 
-					a.get 'https://www.immobilienscout24.de/expose/' + expose_id do |expose_page|
+					marker = Marker.find_or_initialize_by(immoscout_id: expose_id)
 
-						company_name = expose_page.search('[data-qa="companyName"]').text
-						address = expose_page.search('.address-block').last.text
+					if marker.new_record?
+						a.get 'https://www.immobilienscout24.de/expose/' + expose_id do |expose_page|
 
-						if !address.include?("Die vollständige Adresse der Immobilie erhalten Sie vom Anbieter.") && !company_name.blank?
-							puts "ADRESSE: " + address
-							puts "Company: " + company_name
+							company_name = expose_page.search('[data-qa="companyName"]').text
+							address = expose_page.search('.address-block').last.text
 
-							marker = Marker.find_or_initialize_by(immoscout_id: expose_id)
+							if !address.include?("Die vollständige Adresse der Immobilie erhalten Sie vom Anbieter.") && !company_name.blank?
+								puts "ADRESSE: " + address
+								puts "Company: " + company_name
 
-							marker.address = address
-							marker.companies << Company.find_or_initialize_by(name: company_name)
-							marker.save
+								marker.address = address
+								marker.companies << Company.find_or_initialize_by(name: company_name)
+								marker.save
+							end
 						end
 					end
 
