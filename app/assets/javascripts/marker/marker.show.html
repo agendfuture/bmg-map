@@ -6,8 +6,11 @@
 		<dt class="col-sm-4">Beschreibung</dt>
 		<dd class="col-sm-8">{{ marker.description }}</dd>
 
-		<dt class="col-sm-4">Immobilienhai</dt>
-		<dd class="col-sm-8"><a href="" ui-sref="company.show({companyId: marker.company.id})">{{ marker.company.name }}</a></dd>
+		<dt class="col-sm-4">Aktueller Vermieter</dt>
+		<dd class="col-sm-8"><a href="" ui-sref="company.show({companyId: marker.currentLandlord().id})">{{ marker.currentLandlord().name }}</a></dd>
+
+		<dt class="col-sm-4">Aktueller Eigentümer</dt>
+		<dd class="col-sm-8"><a href="" ui-sref="company.show({companyId: marker.currentOwner().id})">{{ marker.currentOwner().name }}</a></dd>
 
 		<dt class="col-sm-4">Koordinaten</dt>
 		<dd class="col-sm-8">{{ marker.lat }} LAT, {{ marker.lng }} LNG</dd>

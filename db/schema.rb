@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180107134450) do
+ActiveRecord::Schema.define(version: 20180218221449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 20180107134450) do
   create_table "companies_markers", force: :cascade do |t|
     t.bigint "marker_id"
     t.bigint "company_id"
+    t.datetime "changed_responsibility_at"
+    t.boolean "owner?", default: false
     t.index ["company_id"], name: "index_companies_markers_on_company_id"
     t.index ["marker_id"], name: "index_companies_markers_on_marker_id"
   end

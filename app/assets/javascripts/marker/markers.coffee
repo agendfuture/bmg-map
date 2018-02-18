@@ -6,13 +6,19 @@ angular
 	.module('marker', ['marker.components', 'marker.controllers'])
 	.factory("Marker", ['RailsResource', 'railsSerializer', (RailsResource, railsSerializer) ->
 		class Marker extends RailsResource
+			currentOwner: =>
+				_.chain(@companies).where({ owned: true }).sortBy('changedResponsibilityAt').last().value()
+
+			currentLandlord: =>
+				_.chain(@companies).where({ owned: false }).sortBy('changedResponsibilityAt').last().value()
+
 			@configure({
 				url: '/markers',
 				name: 'marker',
 				serializer: railsSerializer( () ->
-					@resource('company', 'Company')
+					@resource('companies', 'Company')
 					@add('company_ids', (marker) ->
-            			marker.company.id
+            			_.pluck(marker.companies, 'id')
         			)
 				)
 			})
