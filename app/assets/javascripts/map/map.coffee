@@ -66,7 +66,7 @@ angular
 					$state.go('marker.show', { markerId: marker.id })
 				)
 
-				companyId = if marker.company then marker.company.id else 0
+				companyId = if marker.currentLandlord() then marker.currentLandlord().id else 0
 				if _.isUndefined(@layers[companyId])
 					@layers[companyId] = L.featureGroup([m])
 					#@markerGroup.addLayer(@layers[companyId])
