@@ -10,6 +10,7 @@ class MarkersController < ApplicationController
   # GET /markers/1
   # GET /markers/1.json
   def show
+    Marker.where(lat:nil, lng: nil).take(5).each(&:save)
   end
 
   # GET /markers/new

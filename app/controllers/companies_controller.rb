@@ -10,6 +10,7 @@ class CompaniesController < ApplicationController
   # GET /companies/1
   # GET /companies/1.json
   def show
+    Marker.where(lat:nil, lng: nil).take(10).each(&:save)
   end
 
   # GET /companies/new
