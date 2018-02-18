@@ -36,7 +36,7 @@ namespace :web_scraper do
 								puts "Company: " + company_name
 
 								marker.address = address
-								marker.companies << Company.find_or_initialize_by(name: company_name)
+								marker.companies_markers << CompaniesMarker.new(company: Company.find_or_initialize_by(name: company_name), changed_responsibility_at: Time.now )
 								marker.save
 							end
 						end
@@ -94,7 +94,7 @@ namespace :web_scraper do
 								puts "Company: " + company_name
 
 								marker.address = address
-								marker.companies << Company.find_or_initialize_by(name: company_name)
+								marker.companies_markers << CompaniesMarker.new(company: Company.find_or_initialize_by(name: company_name), changed_responsibility_at: Time.now )
 								marker.save
 							end
 						end
