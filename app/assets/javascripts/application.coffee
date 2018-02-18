@@ -23,6 +23,7 @@
 #= require angularjs-rails-resource/angularjs-rails-resource
 #= require leaflet
 #= require leaflet-contextmenu/dist/leaflet.contextmenu
+#= require leaflet.markercluster/dist/leaflet.markercluster
 #= require sidebar-v2/js/leaflet-sidebar
 #= require angular-cookies
 #= require ui-select/index

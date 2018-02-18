@@ -49,6 +49,8 @@ angular
 				@showAddressAutocomplete()
 
 				@layers = {}
+				@markerGroup =  L.markerClusterGroup()
+				@map.addLayer(@markerGroup)
 
 			showAddressAutocomplete: =>
 				provider = new BmgApp.LeafletGeosearch.OpenStreetMapProvider()
@@ -67,7 +69,7 @@ angular
 				companyId = if marker.company then marker.company.id else 0
 				if _.isUndefined(@layers[companyId])
 					@layers[companyId] = L.featureGroup([m])
-					@layers[companyId].addTo(@map)
+					#@markerGroup.addLayer(@layers[companyId])
 				else
 					@layers[companyId].addLayer(m)
 
@@ -93,20 +95,25 @@ angular
 
 			setCompanyLayerVisible: (companyId) =>
 				if _.isUndefined(@layers[companyId])
-					_.chain(@layers).values().each((layer) ->
-						layer.eachLayer((marker) ->
-							marker.setOpacity(1)
-						)
+					_.chain(@layers).values().each((layer) =>
+						@markerGroup.addLayers(layer.getLayers())
+						# layer.eachLayer((marker) ->
+						# 	marker.setOpacity(1)
+						# )
 					)
 				else
-					_.chain(@layers).values().each((layer) ->
-						layer.eachLayer((marker) ->
-							marker.setOpacity(0)
-						)
+					#@markerGroup.removeLayers(@layers)
+					_.chain(@layers).values().each((layer) =>
+						@markerGroup.removeLayers(layer.getLayers())
+						# layer.eachLayer((marker) ->
+						# 	marker.setOpacity(0)
+						# )
 					)
 
-					@layers[companyId].eachLayer((layer) ->
-						layer.setOpacity(1)
-					)
+					@markerGroup.addLayers(@layers[companyId])
+					# @layers[companyId].eachLayer((layer) =>
+					#  	@markerGroup.addLayers(layer.getLayers())
+					# 	# 	layer.setOpacity(1)
+					# )
 	])
 
