@@ -7,7 +7,7 @@
 		<dd class="col-sm-8">{{ company.description }}</dd>
 	</dl>
 
-	<h5>Eingetragene Adressen</h5>
+	<h5>Eingetragene Adressen <span class="badge badge-primary badge-pill">{{ company.markers.length }}</span></h5>
 	<markers-list ng-model="company.markers"></markers-list>
 
 	<p>
