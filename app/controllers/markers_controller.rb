@@ -4,7 +4,7 @@ class MarkersController < ApplicationController
   # GET /markers
   # GET /markers.json
   def index
-    @markers = Marker.all.includes(:companies).order(:id)
+    @markers = Marker.where.not(lat: nil, lng: nil).includes(:companies).order(:id)
   end
 
   # GET /markers/1
