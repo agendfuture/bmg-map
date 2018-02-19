@@ -17,9 +17,16 @@ angular
 				name: 'marker',
 				serializer: railsSerializer( () ->
 					@resource('companies', 'Company')
-					@add('company_ids', (marker) ->
-            			_.pluck(marker.companies, 'id')
-        			)
+					@add('companies_markers_attributes', (marker) ->
+						_.map(marker.companies, (company) ->
+							{
+								changedResponsibilityAt: company.changedResponsibilityAt,
+								'owner?': company.owned,
+								company_id: company.id,
+								id: company.companiesMarkerId || null
+							}
+						)
+					)
 				)
 			})
 	])

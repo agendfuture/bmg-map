@@ -11,20 +11,30 @@
 			<small id="markerDescriptionHelp" class="form-text text-muted">Beschreibung zum wiedererkennen</small>
 		</div>
 
-<!-- 		<div class="form-group">
+		<div class="form-group">
 			<label>aktueller Vermieter</label>
 			<div>
-
-					<ui-select allow-clear ng-model="marker.company" theme="bootstrap">
-						<ui-select-match placeholder="Select or search a immo company in the list...">{{$select.selected.name}}</ui-select-match>
-						<ui-select-choices repeat="company in companies | filter: $select.search"  ng-hide="!$select.open">
-							<span ng-bind-html="trustAsHtml((company.name | highlight: $select.search))"></span>
-						</ui-select-choices>
-					</ui-select>
-
+				<ui-select allow-clear ng-model="marker.$landlord" theme="bootstrap" on-select="setCompany($item, true)">
+					<ui-select-match placeholder="Select or search a immo company in the list...">{{$select.selected.name}}</ui-select-match>
+					<ui-select-choices repeat="company in companies | filter: $select.search"  ng-hide="!$select.open">
+						<span ng-bind-html="trustAsHtml((company.name | highlight: $select.search))"></span>
+					</ui-select-choices>
+				</ui-select>
 			</div>
 		</div>
- -->
+
+		<div class="form-group">
+			<label>aktueller Eigentümer</label>
+			<div>
+				<ui-select allow-clear ng-model="marker.$owner" theme="bootstrap" on-select="setCompany($item, false)">
+					<ui-select-match placeholder="Select or search a immo company in the list...">{{$select.selected.name}}</ui-select-match>
+					<ui-select-choices repeat="company in companies | filter: $select.search"  ng-hide="!$select.open">
+						<span ng-bind-html="trustAsHtml((company.name | highlight: $select.search))"></span>
+					</ui-select-choices>
+				</ui-select>
+			</div>
+		</div>
+
 		<p>
 			Koordinaten:
 			<br>

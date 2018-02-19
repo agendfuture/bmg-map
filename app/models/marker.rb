@@ -3,6 +3,8 @@ class Marker < ApplicationRecord
 	has_many :companies_markers
 	has_many :companies, through: :companies_markers
 
+	accepts_nested_attributes_for :companies_markers
+
 	geocoded_by :address   # can also be an IP address
 	after_validation :geocode
 
